@@ -85,8 +85,7 @@ def retrieve(filename: str):
             }
             return response
         return {"message": "The requested file name was not found"}
-    except Exception as e:
-        print(e)
+    except Exception:
         return {"message": "Error retrieving file"}
 
 
@@ -98,4 +97,4 @@ def delete_file(filename: str):
         session.commit()
         return {"message": "Operation complete"}
     except Exception:
-        return {"message": "There was a problem deleting"}
+        return {"message": "A problem was encountered on deleting"}
