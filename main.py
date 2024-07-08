@@ -57,12 +57,11 @@ app = FastAPI()
 def upload(file: UploadFile = File(...)):
     try:
         contents = file.file.read()
-        with open(file.filename, "rb") as _:
-            new_row = table.insert().values(
-                file_name=file.filename, file_content=contents, created_at=date.today()
-            )
-            session.execute(new_row)
-            session.commit()
+        new_row = table.insert().values(
+            file_name=file.filename, file_content=contents, created_at=date.today()
+        )
+        session.execute(new_row)
+        session.commit()
     except Exception as e:
         print(e)
         return {"message": "There was an error uploading the file"}
